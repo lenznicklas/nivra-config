@@ -1,0 +1,159 @@
+/* Fortress / Strata 1.0.0. Imported by ../gtk-4.0/gtk.css.
+ * Only Strata widget classes are styled; window borders belong to Hyprland.
+ * Palette source: ../quickshell/fortress/modules/Theme.qml.
+ */
+@import url("fortress-colors.css");
+
+/* Match bar typography; body labels stay regular for readable filenames. */
+.sidebar-shell *, .directory-column *, .mode-pane *, .preview-pane *,
+headerbar.browser-header *, .tab-strip *, .column-popover *,
+.appearance-popover *, .search-dialog * {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+.sidebar-shell, .sidebar-scroll, .sidebar-scroll viewport, .sidebar,
+.preview-pane, .preview-header, headerbar.browser-header, .tab-strip,
+.mode-pane-header {
+  background: @fortress_panelStrong;
+  color: @fortress_text;
+  box-shadow: none;
+}
+.sidebar-shell { border-right: 1px solid @fortress_chipBorder; }
+.preview-pane { border-left: 1px solid @fortress_chipBorder; }
+.preview-header, headerbar.browser-header, .mode-pane-header, .tab-strip {
+  border-bottom: 1px solid @fortress_chipBorder;
+}
+.sidebar { padding: 8px; }
+
+.sidebar-row, .sidebar-device {
+  border-radius: 8px;
+  min-height: 30px;
+  color: @fortress_text;
+}
+.sidebar-row { margin: 2px 0; }
+.sidebar-row image { color: @fortress_accentSoft; }
+.sidebar-row:hover, .sidebar-device:hover { background: @fortress_chipHover; }
+.sidebar-row.active, .sidebar-row.active:hover,
+.sidebar-device.active, .sidebar-device.active:hover {
+  background: @fortress_chipHover;
+  color: @fortress_accentSoft;
+  outline: 1px solid @fortress_chipBorder;
+  outline-offset: -1px;
+}
+.sidebar-row.active image { color: @fortress_accent; }
+.sidebar-device:hover > .sidebar-row,
+.sidebar-device.active > .sidebar-row { background: transparent; }
+
+/* Same 30px controls, 8px rounding, 7% surface and 18% hover as the bar. */
+headerbar.browser-header button.header-action,
+headerbar.browser-header menubutton.header-action > button,
+headerbar.browser-header .sidebar-toggle, .preview-header-action,
+button.column-header-action, menubutton.column-header-action > button {
+  background: @fortress_chipSurface;
+  background-image: none;
+  border: 1px solid @fortress_chipBorder;
+  border-radius: 8px;
+  box-shadow: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+  color: @fortress_text;
+  transition: background 180ms ease-out, border-color 180ms ease-out;
+}
+headerbar.browser-header button.header-action:hover,
+headerbar.browser-header menubutton.header-action > button:hover,
+headerbar.browser-header .sidebar-toggle:hover, .preview-header-action:hover,
+button.column-header-action:hover, menubutton.column-header-action > button:hover {
+  background: @fortress_chipHover;
+  border-color: @fortress_accent;
+  color: @fortress_accentSoft;
+}
+headerbar.browser-header button.header-action.active,
+.preview-header-action:checked {
+  background: @fortress_chipHover;
+  color: @fortress_accentSoft;
+}
+.location-entry, .search-field, .column-filter {
+  background: @fortress_chipSurface;
+  background-image: none;
+  border: 1px solid @fortress_chipBorder;
+  border-radius: 8px;
+  color: @fortress_text;
+  caret-color: @fortress_accent;
+  box-shadow: none;
+  padding: 6px 12px;
+}
+.location-entry:focus-within, .search-field:focus-within,
+.column-filter:focus-within {
+  border-color: @fortress_accent;
+  box-shadow: none;
+  outline: none;
+}
+.location-entry placeholder, .search-field placeholder { color: @fortress_textMuted; }
+.browser-tab .tab-select { font-weight: 600; }
+.browser-tab.active .tab-select { color: @fortress_accentSoft; }
+
+/* Keep native file artwork and layout; soften all three selection modes. */
+.file-list row, .file-list-mode row, .icons-card { border-radius: 8px; }
+.file-list row:hover:not(:selected), .file-list-mode row:hover:not(:selected),
+.icons-card:hover:not(.selected) { background: @fortress_chipSurface; }
+.file-list row:selected, .file-list-mode row:selected,
+.file-list row:selected .file-row, .file-list-mode row:selected .list-row,
+.icons-card.selected, .icons-card:selected, .file-row.active-path {
+  background: @fortress_chipHover;
+  color: @fortress_text;
+  box-shadow: none;
+  outline: 1px solid @fortress_chipBorder;
+  outline-offset: -1px;
+}
+.file-list row:selected label, .file-list-mode row:selected label,
+.icons-card.selected label { color: @fortress_text; }
+.file-list row:focus-visible, .file-list-mode row:focus-visible,
+.icons-card:focus-visible, .sidebar-row:focus-visible {
+  outline: 1px solid @fortress_accent;
+  outline-offset: -1px;
+}
+.preview-content { padding: 8px; }
+
+/* Quickshell popups use dark panels and cyan borders, with no explicit shadow. */
+.column-popover contents, .appearance-popover contents,
+.icons-thumbnail-popover contents {
+  background: @fortress_panelStrong;
+  color: @fortress_text;
+  border: 1px solid alpha(@fortress_accent, 0.38);
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 0;
+}
+.column-menu, .appearance-menu { padding: 8px; }
+.column-menu-option { border-radius: 8px; min-height: 28px; }
+.column-menu-option:hover { background: @fortress_chipHover; }
+
+/* Scoped scrollbars: retain a usable grab target without a visible track. */
+.sidebar-scroll scrollbar, .browser-listing-scroll scrollbar,
+.preview-pane scrollbar, .mode-scroll scrollbar {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.sidebar-scroll scrollbar trough, .browser-listing-scroll scrollbar trough,
+.preview-pane scrollbar trough, .mode-scroll scrollbar trough {
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  border: none;
+}
+.sidebar-scroll scrollbar.vertical, .browser-listing-scroll scrollbar.vertical,
+.preview-pane scrollbar.vertical { min-width: 6px; }
+.sidebar-scroll scrollbar slider, .browser-listing-scroll scrollbar slider,
+.preview-pane scrollbar slider, .mode-scroll scrollbar slider {
+  background: @fortress_muted;
+  border: none;
+  border-radius: 8px;
+  min-width: 4px;
+  min-height: 4px;
+}
+.sidebar-scroll scrollbar slider:hover, .browser-listing-scroll scrollbar slider:hover,
+.preview-pane scrollbar slider:hover, .mode-scroll scrollbar slider:hover {
+  background: @fortress_accentSoft;
+}

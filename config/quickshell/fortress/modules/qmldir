@@ -1,0 +1,23 @@
+# Explicit local types so hot reload can discover newly added components.
+Bar 1.0 Bar.qml
+BatteryChip 1.0 BatteryChip.qml
+BatteryControl 1.0 BatteryControl.qml
+ChipButton 1.0 ChipButton.qml
+ClockChip 1.0 ClockChip.qml
+ControlCenter 1.0 ControlCenter.qml
+ControlSlider 1.0 ControlSlider.qml
+ControlState 1.0 ControlState.qml
+Launcher 1.0 Launcher.qml
+Notes 1.0 Notes.qml
+Palette 1.0 Palette.qml
+Theme 1.0 Theme.qml
+Workspaces 1.0 Workspaces.qml
+ShellPreferences 1.0 ShellPreferences.qml
+SettingToggle 1.0 SettingToggle.qml
+DesktopSettings 1.0 DesktopSettings.qml
+Overview 1.0 Overview.qml
+AudioService 1.0 AudioService.qml
+AudioPanel 1.0 AudioPanel.qml
+AudioNodeControl 1.0 AudioNodeControl.qml
+AudioDeviceList 1.0 AudioDeviceList.qml
+AudioSettingsPage 1.0 AudioSettingsPage.qml

@@ -1,0 +1,122 @@
+/* Fortress file chooser — GTK4 native dialogs.
+ * Separate from GTK3: the installed GTK4 uses ColumnView and optional GridView.
+ * Preserve libadwaita dialog/headerbar structure and all actions.
+ */
+filechooser { background-color: @fortress_bg; color: @fortress_text; }
+filechooser placessidebar,
+filechooser placessidebar viewport,
+filechooser placessidebar list {
+  background-color: @fortress_surface;
+  color: @fortress_text;
+}
+filechooser placessidebar { border-right: 1px solid @fortress_border; padding: 6px 2px; }
+filechooser placessidebar row {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  min-height: 24px;
+  margin: 2px 4px;
+  padding: 4px 8px;
+}
+filechooser placessidebar row:hover:not(:selected) { background-color: alpha(@fortress_accent, 0.07); }
+filechooser placessidebar row:selected {
+  background-color: @fortress_selection;
+  border-color: alpha(@fortress_accent, 0.20);
+  box-shadow: inset 2px 0 @fortress_accent;
+  color: @fortress_accentSoft;
+}
+filechooser placessidebar row image { color: @fortress_mutedText; min-width: 16px; min-height: 16px; }
+filechooser placessidebar row:selected image { color: @fortress_accentSoft; }
+filechooser placessidebar row:disabled { color: @fortress_mutedText; }
+
+filechooser #pathbarbox {
+  background: @fortress_surface;
+  color: @fortress_text;
+  border-bottom: 1px solid @fortress_border;
+  padding: 2px 6px;
+}
+filechooser pathbar button,
+filechooser pathbar button:first-child,
+filechooser pathbar button:last-child,
+filechooser pathbar button:only-child {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  min-height: 22px;
+  margin: 1px 2px;
+  padding: 4px 8px;
+  color: @fortress_mutedText;
+}
+filechooser pathbar button:hover { background: @fortress_selection; color: @fortress_text; }
+filechooser pathbar button:checked { background: @fortress_selection; color: @fortress_accentSoft; font-weight: 600; }
+filechooser pathbar button:focus-visible { outline-color: @fortress_accent; }
+filechooser entry {
+  background: @fortress_bg;
+  color: @fortress_text;
+  caret-color: @fortress_accent;
+  border: 1px solid @fortress_border;
+  border-radius: 8px;
+  min-height: 24px;
+  padding: 5px 10px;
+  box-shadow: none;
+}
+filechooser entry:focus-within {
+  border-color: @fortress_accent;
+  outline-color: @fortress_accent;
+  box-shadow: 0 0 0 2px alpha(@fortress_accent, 0.10);
+}
+filechooser entry image { color: @fortress_accentSoft; }
+
+/* The 4.24 template has these native view nodes; no replacement file model. */
+filechooser columnview, filechooser columnview > listview,
+filechooser gridview {
+  background: @fortress_bg;
+  color: @fortress_text;
+}
+filechooser columnview > header {
+  background: @fortress_surface;
+  color: @fortress_mutedText;
+  border-bottom: 1px solid @fortress_border;
+}
+filechooser columnview > header button { padding: 4px 8px; min-height: 22px; box-shadow: none; }
+filechooser columnview > listview > row { min-height: 28px; }
+filechooser columnview > listview > row:hover:not(:selected),
+filechooser gridview > child:hover:not(:selected) { background: @fortress_surface; }
+filechooser columnview > listview > row:selected,
+filechooser gridview > child:selected {
+  background: @fortress_selection;
+  color: @fortress_text;
+}
+filechooser gridview > child { border-radius: 8px; padding: 6px; margin: 2px; }
+filechooser columnview > listview > row:focus-visible,
+filechooser gridview > child:focus-visible {
+  outline: 1px solid @fortress_accent;
+  outline-offset: -1px;
+}
+filechooser actionbar { background: @fortress_surface; border-top: 1px solid @fortress_border; box-shadow: none; }
+filechooser actionbar > revealer > box { padding: 6px 8px; }
+filechooser dropdown > button { min-height: 22px; padding: 4px 8px; }
+filechooser popover > contents {
+  background: @fortress_surface;
+  color: @fortress_text;
+  border: 1px solid @fortress_border;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px alpha(black, 0.20);
+}
+filechooser popover modelbutton { min-height: 22px; padding: 4px 8px; border-radius: 6px; }
+filechooser popover modelbutton:hover { background: @fortress_selection; color: @fortress_accentSoft; }
+filechooser scrolledwindow { border: none; box-shadow: none; }
+filechooser scrollbar, filechooser scrollbar trough { background: transparent; border: none; }
+filechooser scrollbar slider {
+  background: alpha(@fortress_text, 0.22);
+  border: none;
+  border-radius: 8px;
+  min-width: 6px;
+  min-height: 6px;
+  margin: 2px;
+}
+filechooser scrollbar.vertical slider { min-height: 32px; }
+filechooser scrollbar.horizontal slider { min-width: 32px; }
+filechooser scrollbar slider:hover { background: alpha(@fortress_accentSoft, 0.65); }
+filechooser scrollbar slider:active { background: @fortress_accent; }

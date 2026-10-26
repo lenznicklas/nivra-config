@@ -1,0 +1,11 @@
+# Generated from /home/lenz/.config/quickshell/fortress/modules/Theme.qml
+name = "Fortress"
+background = "#180c1de6"
+surface = "#180c1dff"
+text = "#f8e1d0ff"
+accent = "#f5895cff"
+danger = "#e25549ff"
+muted = "#4a273cad"
+highlight = "#f5895c2e"
+border = "#f7b98f29"
+dim_text = "#f8e1d08c"

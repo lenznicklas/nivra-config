@@ -1,0 +1,163 @@
+/* Fortress file chooser — GTK3 / xdg-desktop-portal-gtk.
+ * Public filechooser/placessidebar/pathbar/treeview CSS nodes; native behavior.
+ * Palette and geometry come from Quickshell through sync-toolkit-theme.py.
+ */
+filechooser {
+  background-color: @fortress_bg;
+  color: @fortress_text;
+}
+
+/* Calm, slightly raised places rail, with a narrow accent on the active place. */
+filechooser placessidebar,
+filechooser placessidebar viewport,
+filechooser placessidebar list {
+  background-color: @fortress_surface;
+  background-image: none;
+  color: @fortress_text;
+}
+filechooser placessidebar {
+  border-right: 1px solid @fortress_border;
+  padding: 6px 2px;
+}
+filechooser placessidebar row {
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  min-height: 24px;
+  margin: 2px 4px;
+  padding: 4px 8px;
+  color: @fortress_text;
+}
+filechooser placessidebar row:hover:not(:selected) {
+  background-color: alpha(@fortress_accent, 0.07);
+}
+filechooser placessidebar row:selected {
+  background-color: @fortress_selection;
+  border-color: alpha(@fortress_accent, 0.20);
+  box-shadow: inset 2px 0 @fortress_accent;
+  color: @fortress_accentSoft;
+}
+filechooser placessidebar row image {
+  color: @fortress_mutedText;
+  min-width: 16px;
+  min-height: 16px;
+}
+filechooser placessidebar row:selected image { color: @fortress_accentSoft; }
+filechooser placessidebar row:disabled { color: @fortress_mutedText; }
+
+/* The widget name pathbarbox is present in the installed GTK3 template. */
+filechooser #pathbarbox {
+  background: @fortress_surface;
+  color: @fortress_text;
+  border-bottom: 1px solid @fortress_border;
+  padding: 2px 6px;
+}
+filechooser pathbar button,
+filechooser pathbar button:first-child,
+filechooser pathbar button:last-child,
+filechooser pathbar button:only-child {
+  background: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: none;
+  text-shadow: none;
+  min-height: 22px;
+  margin: 1px 2px;
+  padding: 4px 8px;
+  color: @fortress_mutedText;
+}
+filechooser pathbar button:hover { background: @fortress_selection; color: @fortress_text; }
+filechooser pathbar button:checked {
+  background: @fortress_selection;
+  color: @fortress_accentSoft;
+  font-weight: 600;
+}
+filechooser pathbar button:focus { border-color: @fortress_accent; }
+
+/* Both the search entry and the save-name/location entry stay native controls. */
+filechooser entry {
+  background: @fortress_bg;
+  color: @fortress_text;
+  caret-color: @fortress_accent;
+  border: 1px solid @fortress_border;
+  border-radius: 8px;
+  min-height: 24px;
+  padding: 5px 10px;
+  box-shadow: none;
+}
+filechooser entry:focus {
+  border-color: @fortress_accent;
+  box-shadow: 0 0 0 2px alpha(@fortress_accent, 0.10);
+}
+filechooser entry image { color: @fortress_accentSoft; }
+filechooser entry selection { background: @fortress_selection; color: @fortress_text; }
+
+/* Keep sorting, resizable columns, type icons and all selection modes. */
+filechooser treeview.view {
+  background: @fortress_bg;
+  color: @fortress_text;
+  border: none;
+  padding: 4px 6px;
+}
+filechooser treeview.view:hover:not(:selected) { background-color: @fortress_surface; }
+filechooser treeview.view:selected,
+filechooser treeview.view:selected:focus {
+  background: @fortress_selection;
+  color: @fortress_text;
+}
+filechooser treeview.view header button {
+  background: @fortress_surface;
+  color: @fortress_mutedText;
+  border: none;
+  border-bottom: 1px solid @fortress_border;
+  border-radius: 0;
+  box-shadow: none;
+  min-height: 22px;
+  padding: 4px 8px;
+  font-weight: 500;
+}
+filechooser treeview.view header button:hover { background: @fortress_selection; color: @fortress_accentSoft; }
+
+/* Filters/extra choices are retained; no widget is hidden or repositioned. */
+filechooser actionbar {
+  background: @fortress_surface;
+  color: @fortress_text;
+  border-top: 1px solid @fortress_border;
+  box-shadow: none;
+}
+filechooser actionbar > revealer > box { padding: 6px 8px; }
+filechooser combobox > box > button { min-height: 22px; padding: 4px 8px; }
+filechooser button.suggested-action {
+  background: @fortress_accent;
+  color: @fortress_bg;
+  border-color: @fortress_accent;
+}
+filechooser button.suggested-action:hover { background: @fortress_accentSoft; }
+
+/* Native attached context menus and create-folder/rename popovers. */
+filechooser menu,
+filechooser popover.background {
+  background: @fortress_surface;
+  color: @fortress_text;
+  border: 1px solid @fortress_border;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 6px 18px alpha(black, 0.20);
+}
+filechooser menuitem { padding: 4px 8px; min-height: 22px; border-radius: 6px; }
+filechooser menuitem:hover { background: @fortress_selection; color: @fortress_accentSoft; }
+filechooser scrolledwindow { border: none; box-shadow: none; }
+filechooser scrollbar, filechooser scrollbar trough { background: transparent; border: none; }
+filechooser scrollbar slider {
+  background: alpha(@fortress_text, 0.22);
+  border: none;
+  border-radius: 8px;
+  min-width: 6px;
+  min-height: 6px;
+  margin: 2px;
+}
+filechooser scrollbar.vertical slider { min-height: 32px; }
+filechooser scrollbar.horizontal slider { min-width: 32px; }
+filechooser scrollbar slider:hover { background: alpha(@fortress_accentSoft, 0.65); }
+filechooser scrollbar slider:active { background: @fortress_accent; }

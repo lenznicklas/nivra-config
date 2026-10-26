@@ -1,0 +1,8 @@
+{
+  "showWindowTitle": true,
+  "showBattery": true,
+  "showDate": true,
+  "compactBar": true,
+  "barPosition": "top",
+  "guiScale": 1
+}

@@ -1,0 +1,71 @@
+// Fortress sunset palette from ../quickshell/fortress/modules/Theme.qml
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "padding": {
+      "top": 1,
+      "left": 2,
+      "right": 3
+    },
+    "color": {
+      "1": "#f5895c",
+      "2": "#f7b98f"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "#f5895c",
+      "title": "#f7b98f",
+      "output": "#f8e1d0",
+      "separator": "#4a273c"
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "format": "{#title}{user-name}{#keys}@{#title}{host-name}{#}"
+    },
+    {
+      "type": "os",
+      "key": "os"
+    },
+    {
+      "type": "kernel",
+      "key": "kernel"
+    },
+    {
+      "type": "wm",
+      "key": "wm"
+    },
+    {
+      "type": "terminal",
+      "key": "term"
+    },
+    {
+      "type": "shell",
+      "key": "shell"
+    },
+    {
+      "type": "packages",
+      "key": "pkgs"
+    },
+    {
+      "type": "uptime",
+      "key": "up"
+    },
+    {
+      "type": "memory",
+      "key": "mem",
+      "percent": {
+        "type": 1
+      }
+    },
+    "break",
+    {
+      "type": "custom",
+      "format": "  {##4a273c}●  {##e25549}●  {##f5895c}●  {##f7b98f}●  {##f8e1d0}●{#}"
+    }
+  ]
+}
