@@ -18,7 +18,10 @@ unrelated files. Existing files are backed up under
 To restore a file, copy it from that backup to its original location. Files that
 were newly installed have no backup; remove those separately to undo them.
 Installation uses copies so the shell's settings/theme helpers can edit them.
-Symlinked parent directories are rejected to prevent writes outside the target.
+Existing symlinked config subdirectories are backed up and replaced with real
+directories. Their contents are copied first to preserve unrelated files; the
+original linked directories are left untouched. File/dangling-link conflicts in
+parent paths are backed up too. The `.config` root itself must be a real directory.
 The configs expect `~/.config`; custom `XDG_CONFIG_HOME` locations are unsupported.
 
 ## Dependencies

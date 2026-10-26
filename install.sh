@@ -25,26 +25,62 @@ backup = target / 'nivra-backups' / datetime.now().strftime('%Y%m%d-%H%M%S-%f')
 files = sorted(p for p in source.rglob('*') if p.is_file())
 if not files:
     raise SystemExit('No bundled config files found.')
-# Preflight all paths before modifying anything; never follow existing symlinks.
-for path in files:
-    rel = path.relative_to(source)
-    dest = target / rel
-    for parent in [target, *[target / p for p in rel.parents if str(p) != '.']]:
-        if parent.is_symlink() or (parent.exists() and not parent.is_dir()):
-            raise SystemExit(f'Config parent must be a real directory: {parent}')
-    if dest.is_dir() and not dest.is_symlink():
-        raise SystemExit(f'Expected a file, found a directory: {dest}')
+# Keep the root and backup location predictable. Config subdirectories may be
+# dotfile-manager symlinks; detach those after preserving their original links.
+if target.is_symlink() or (target.exists() and not target.is_dir()):
+    raise SystemExit(f'Config root must be a real directory: {target}')
+backup_root = target / 'nivra-backups'
+if backup_root.is_symlink() or (backup_root.exists() and not backup_root.is_dir()):
+    raise SystemExit(f'Backup root must be a real directory: {backup_root}')
+
+def prepare_parent(parent):
+    if parent == target:
+        if not dry:
+            parent.mkdir(parents=True, exist_ok=True)
+        return
+    prepare_parent(parent.parent)
+    if parent.is_symlink() or (parent.exists() and not parent.is_dir()):
+        print(f'{"Would back up" if dry else "Backing up"} config path: {parent}')
+        if dry:
+            return
+        saved = backup / 'parent-conflicts' / parent.relative_to(target)
+        saved.parent.mkdir(parents=True, exist_ok=True)
+        if parent.is_symlink():
+            # Save the resolved destination so relative links still work in backup.
+            resolved = parent.resolve()
+            saved.symlink_to(resolved, target_is_directory=parent.is_dir())
+            if parent.is_dir():
+                # Preserve unrelated entries without editing the linked dotfiles.
+                import tempfile
+                stage = Path(tempfile.mkdtemp(prefix='.nivra-', dir=parent.parent))
+                try:
+                    shutil.copytree(parent, stage, symlinks=True, dirs_exist_ok=True)
+                    parent.unlink()
+                    stage.rename(parent)
+                finally:
+                    if stage.exists():
+                        shutil.rmtree(stage)
+                return
+            parent.unlink()
+        else:
+            shutil.move(str(parent), str(saved))
+    if not dry:
+        parent.mkdir(parents=True, exist_ok=True)
+
 for path in files:
     rel = path.relative_to(source)
     dest = target / rel
     print(f'{"Would install" if dry else "Installing"}: {rel}')
+    prepare_parent(dest.parent)
+    if dest.is_dir() and not dest.is_symlink():
+        raise SystemExit(f'Expected a file, found a directory: {dest}')
     if dry:
         continue
     if dest.exists() or dest.is_symlink():
         saved = backup / rel
         saved.parent.mkdir(parents=True, exist_ok=True)
         if dest.is_symlink():
-            saved.symlink_to(os.readlink(dest))
+            saved.symlink_to(dest.resolve())
         else:
             shutil.copy2(dest, saved)
         dest.unlink()
